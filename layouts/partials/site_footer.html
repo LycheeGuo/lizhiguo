@@ -1,0 +1,16 @@
+{{/* layouts/partials/site_footer.html */}}
+{{/* This file overrides the theme's footer. */}}
+{{/* It now includes logic to replace {year} with the current year. */}}
+<footer class="site-footer">
+  <p class="powered-by">
+    {{ with .Site.Params.footer.copyright }}
+      {{/* Replace the {year} placeholder with the current year */}}
+      {{ $copyright_text := replace .notice "{year}" now.Year }}
+
+      {{/* Also, replace {license} if it exists, or just remove it */}}
+      {{ $copyright_text = replace $copyright_text "{license}" .license.name | safeHTML }}
+
+      {{ $copyright_text | markdownify | emojify }}
+    {{ end }}
+  </p>
+</footer>
