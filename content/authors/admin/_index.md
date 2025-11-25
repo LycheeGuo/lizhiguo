@@ -45,9 +45,9 @@ education:
 superuser: true
 status:
   icon: ☕️
-last_name: Wu
+last_name: Guo
 highlight_name: true
-first_name: Alice
+first_name: Lizhi
 email: 1155205592@link.cuhk.edu.hk
 ---
-Lizhi is a PhD candidate dedicated to  the health and well-being of older adults through cognitive neuroscience, social determinants, and imaging analysis. Always eager to learn new things and deepen expertise in the field, Lizhi is enthusiastic about exploring innovative approaches in aging research. For more information, please contact Lizhi at [guolz@link.cuhk.edu.hk](mailto:guolz@link.cuhk.edu.hk).[](<mailto: guolz@link.cuhk.edu.hk>)
+Lizhi is a PhD candidate dedicated to the health and well-being of older adults through cognitive neuroscience, social determinants, and imaging analysis. Always eager to learn new things and deepen expertise in the field, Lizhi is enthusiastic about exploring innovative approaches in aging research. For more information, please contact Lizhi at [guolz@link.cuhk.edu.hk](mailto:guolz@link.cuhk.edu.hk).[](<mailto: guolz@link.cuhk.edu.hk>)
