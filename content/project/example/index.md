@@ -18,7 +18,6 @@ links:
     icon_pack: fab
     icon: researchgate
 image:
-  caption: Photo by rawpixel on Unsplash
   focal_point: Smart
   filename: featured.jpg
 url_code: ""
