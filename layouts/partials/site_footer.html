@@ -1,16 +1,57 @@
 {{/* layouts/partials/site_footer.html */}}
-{{/* This file overrides the theme's footer. */}}
-{{/* It now includes logic to replace {year} with the current year. */}}
-<footer class="site-footer">
-  <p class="powered-by">
-    {{ with .Site.Params.footer.copyright }}
-      {{/* Replace the {year} placeholder with the current year */}}
-      {{ $copyright_text := replace .notice "{year}" now.Year }}
 
-      {{/* Also, replace {license} if it exists, or just remove it */}}
-      {{ $copyright_text = replace $copyright_text "{license}" .license.name | safeHTML }}
+<style>
+  @keyframes spread-flow {
+    /* 保持上一版修改后的方向：从 200% -> 0%
+       让背景向右滑动，产生“从左往右”的流动视觉 */
+    0% { background-position: 200% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .creeping-colors {
+    /* ★ 颜色再次加深 (Deep/Strong Colors) ★
+       这一次选用了对比度极高的深色，彻底解决“浅”的问题。
+       
+       顺序：
+       1. 深红粉 (#be185d - Pink 700)
+       2. 深紫   (#7e22ce - Purple 700)
+       3. 宝蓝   (#1d4ed8 - Blue 700)  <- 之前的蓝色太浅，这个很深
+       4. 森林绿 (#047857 - Emerald 700) <- 之前的绿色太浅，这个很深
+       5. 焦糖橙 (#c2410c - Orange 700)
+       6. 循环回深红粉
+    */
+    background: linear-gradient(90deg, 
+      #be185d, 
+      #7e22ce, 
+      #1d4ed8, 
+      #047857, 
+      #c2410c, 
+      #be185d
+    );
+    
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent; 
+    -webkit-text-fill-color: transparent;
+    
+    /* 保持流动动画 */
+    animation: spread-flow 10s linear infinite;
+  }
+</style>
 
-      {{ $copyright_text | markdownify | emojify }}
-    {{ end }}
+<footer class="mx-auto mt-12 pb-6 max-w-7xl px-6 lg:px-8 text-center">
+  
+  {{/* 版权信息：font-bold 加粗，进一步增加可视度 */}}
+  <p class="creeping-colors text-sm mb-4 font-bold">
+    {{- with site.Params.footer.copyright.notice -}}
+      {{- replace . "{year}" now.Year | markdownify -}}
+    {{- end -}}
   </p>
+  
+  {{/* 底部 Emoji 栏 */}}
+  <div class="mt-4 text-xl select-none cursor-default">
+    🍒 ✨ 🪐 🍦 🌈
+  </div>
+  
 </footer>
