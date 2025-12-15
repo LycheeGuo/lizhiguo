@@ -1,94 +1,52 @@
 {{/* layouts/partials/site_footer.html */}}
 
 <style>
-  /* =========================================
-     1. 你的流光文字特效 (保持不变)
-     ========================================= */
   @keyframes spread-flow {
+    /* 保持：从左向右流动 */
     0% { background-position: 200% 50%; }
     100% { background-position: 0% 50%; }
   }
   
   .creeping-colors {
+    /* 颜色顺序调整：
+       1. 深紫 (#7e22ce) -> 作为循环的起点和终点
+       2. 深宝蓝 (#1d4ed8)
+       3. 深森林绿 (#047857)
+       4. 深金黄 (#ca8a04) -> ★ 新增：替换了原来的红色，选用了深金色以保证清晰度
+       5. 深焦糖橙 (#c2410c)
+       6. 回到深紫 (#7e22ce) -> 闭环
+    */
     background: linear-gradient(90deg, 
-      #7e22ce, #1d4ed8, #047857, #ca8a04, #c2410c, #7e22ce
+      #7e22ce, /* 深紫 */
+      #1d4ed8, /* 深宝蓝 */
+      #047857, /* 深森林绿 */
+      #ca8a04, /* 深金黄 */
+      #c2410c, /* 深焦糖橙 */
+      #7e22ce  /* 循环回深紫 */
     );
+    
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent; 
     -webkit-text-fill-color: transparent;
+    
     animation: spread-flow 10s linear infinite;
-  }
-
-  /* =========================================
-     2. 新增：网页背景透明化 (让粒子显示的关键！)
-     ========================================= */
-  
-  /* 让最底层的 body 背景完全透明 */
-  body {
-    background-color: transparent !important;
-  }
-
-  /* 让主要的内容板块变成 80% 不透明的白色 (透过一点背景) */
-  .home-section, 
-  .page-body,
-  .article-container,
-  div[class*="block-"],
-  .universal-wrapper {
-    background-color: rgba(255, 255, 255, 0.8) !important; 
-  }
-
-  /* 卡片稍微再透一点，加个毛玻璃效果 */
-  .card, .card-simple {
-    background-color: rgba(255, 255, 255, 0.7) !important;
-    backdrop-filter: blur(5px);
-  }
-
-  /* 顶部导航栏也半透明 */
-  .navbar {
-    background-color: rgba(255, 255, 255, 0.9) !important;
-    backdrop-filter: blur(10px);
-  }
-
-  /* --- 暗黑模式适配 (如果有人切到深色模式) --- */
-  @media (prefers-color-scheme: dark) {
-    body.dark .home-section, 
-    body.dark .page-body,
-    body.dark .article-container,
-    body.dark div[class*="block-"],
-    body.dark .card {
-      background-color: rgba(33, 33, 33, 0.8) !important;
-    }
-    body.dark .navbar {
-      background-color: rgba(33, 33, 33, 0.9) !important;
-    }
   }
 </style>
 
 <footer class="mx-auto mt-12 pb-8 max-w-7xl px-6 lg:px-8 text-center">
   
-  {{/* 版权信息 */}}
+  {{/* 保持之前的间距设置：mb-1 */}}
   <p class="creeping-colors text-sm mb-1">
     {{- with site.Params.footer.copyright.notice -}}
       {{- replace . "{year}" now.Year | markdownify -}}
     {{- end -}}
   </p>
   
-  {{/* 装饰 Emoji */}}
+  {{/* 保持之前的间距设置：mt-1 */}}
   <div class="mt-1 text-xl select-none cursor-default">
     🍒 ✨ 🪐 🍦 🌈
   </div>
   
 </footer>
-
-{{/* =========================================
-     3. 脚本加载 (核心部分)
-     ========================================= */}}
-
-{{/* 加载 GSAP 动画库 (必须有这个) */}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-
-{{/* 加载你的粒子脚本 */}}
-{{/* 注意：这里直接引用 /js/ 路径，前提是你已经按第一步把文件移到了 static/js/ */}}
-<script src="/js/particle-background.js"></script>
