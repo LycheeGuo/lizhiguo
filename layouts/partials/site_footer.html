@@ -50,3 +50,14 @@
   </div>
   
 </footer>
+
+{{/* 加载 GSAP 动画库 */}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+{{/* 加载您的粒子背景脚本 */}}
+{{ $js := resources.Get "js/particle-background.js" }}
+{{ if $js }}
+  <script src="{{ $js.RelPermalink }}"></script>
+{{ else }}
+  <script src="/js/particle-background.js"></script> 
+{{ end }}
